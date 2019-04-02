@@ -19,6 +19,10 @@ io.on('connection', function(socket){
     io.sockets.emit('update', connections);
   });
   
+  socket.on('command', function(c){
+    if (c == "reload"){io.sockets.emit('reload');}
+  });
+  
   socket.on('chat message', function(msg){
     io.emit('message', msg);
   });
