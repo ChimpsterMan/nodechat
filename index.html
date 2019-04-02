@@ -4,23 +4,26 @@
     <title>Node Chat</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
+      body { font: 13px Helvetica, Arial; background: #2F3136; }
+      input {background: #484C52;}
+      button {background: #7F8186;}
+      h2, a {color:#FFFFFF; font-size:3vh;}
       #head {position: fixed; width: 100%; height: 20px; padding: 3px; top:0; padding-left: 10px; padding-right: 10px;}
       #usercount {float:right;}
-      form#userinfo { background: #000; padding: 3px; padding-left: 0;position: fixed; bottom: 0; right:0; width: 10%; }
-      form#userinfo input { border: 0; padding: 10px; width: 100%; }
-      form#message { background: #000; padding: 3px; position: fixed; bottom: 0; width: 90%; }
-      form#message input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form#message button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages {top: 30px; position: fixed; width:100%; height: 93%; overflow-y: auto;}
+      form#userinfo { background: #202225; padding: 3px; padding-left: 0; padding-top: 3px; position: fixed; bottom: 0; right:0; width: 10%; }
+      form#userinfo input { border: 0; padding: 2.25vh; width: 100%; }
+      form#message { background: #202225; padding: 3px; position: fixed; bottom: 0; width: 90%; }
+      form#message input { border: 0; padding: 2.25vh; width: 90%; margin-right: .5%; }
+      form#message button { width: 9%; border: none; padding: 10px; }
+      #messages {top: 30px; position: fixed; width:100%; height: 87%; overflow-y: auto;}
       #messages ul { list-style-type: none; margin: 0; padding: 0; }
-      #messages ul li { padding: 5px 10px; }
-      #messages ul li:nth-child(odd) { background: #eee; }
+      #messages ul li { padding: 5px 10px; height: 4vh; font-style:3vh; color: #CCDADE; background: #34363C;}
+      #messages ul li:nth-child(odd) { background: #36393F; }
     </style>
   </head>
   <body>
     <div id="head">
-      <h2><a>NodeJS Chat By:Erik Nilsson</a><a id="usercount"></a></h2>
+      <h2><a>NodeJS Chat By: Erik Nilsson</a><a id="usercount"></a></h2>
     </div>
     
     <form action="" id="userinfo">
@@ -31,7 +34,8 @@
       <ul></ul>
     </div>
     <form action="" id="message">
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input id="m" autocomplete="off" />
+      <button>Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
