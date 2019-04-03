@@ -45,16 +45,17 @@
         msgCount = 1;
         
         socket.on('connect', function(){
+          socket.emit('newConnection');
+          
+        });
+        
+        socket.on('update', function(c){
+          $('#usercount').text(c + ' Online');
           if (getCookie('username') == ""){
             $('#user').val('Guest');
           } else {
             $('#user').val(getCookie('username'));
           }
-          socket.emit('newConnection');
-        });
-        
-        socket.on('update', function(c){
-          $('#usercount').text(c + ' Online');
         });
         
         $('form').submit(function(e){
@@ -98,7 +99,7 @@
           document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
         }
         
-		    function accessCookie(cookieName)
+		    function getCookie(cookieName)
         {
           var name = cookieName + "=";
           var allCookieArray = document.cookie.split(';');
