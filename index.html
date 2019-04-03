@@ -27,7 +27,7 @@
     </div>
     
     <form action="" id="userinfo">
-      <input id="user" value="Guest"/>
+      <input id="user"/>
     </form>
     
     <div id="messages">
@@ -46,6 +46,11 @@
         
         socket.on('connect', function(){
           socket.emit('newConnection');
+          if (getCookie('username') == ""){
+            $('#user').val('Guest');
+          } else {
+            $('#user').val(getCookie('username'));
+          }
         });
         
         socket.on('update', function(c){
@@ -64,6 +69,7 @@
             }
           }
           $('#m').val('');
+          createCookie('username',$('#user').val(),1000);
           return false;
         });
         
@@ -85,20 +91,24 @@
           window.scrollTo(0,document.getElementById('messages').scrollHeight);
         };
         
-        function getCookie(cname) {
-          var name = cname + "=";
-          var decodedCookie = decodeURIComponent(document.cookie);
-          var ca = decodedCookie.split(';');
-          for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
-            }
-          }
-          return "";
+        function createCookie(cookieName,cookieValue,daysToExpire)
+        {
+          var date = new Date();
+          date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+          document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+        }
+        
+		    function accessCookie(cookieName)
+        {
+          var name = cookieName + "=";
+          var allCookieArray = document.cookie.split(';');
+          for(var i=0; i<allCookieArray.length; i++)
+          {
+            var temp = allCookieArray[i].trim();
+            if (temp.indexOf(name)==0)
+            return temp.substring(name.length,temp.length);
+       	  }
+        	return "";
         }
       });
     </script>

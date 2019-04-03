@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 2000;
+var fs = require('fs');
 var connections = 0;
 
 app.get('/', function(req, res){
@@ -27,6 +28,15 @@ io.on('connection', function(socket){
     io.emit('message', msg);
   });
 });
+
+function writeLog(msg){
+  fs.writeFile("/logs/log.txt", msg, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+      console.log("Message was logged");
+  }); 
+}
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
