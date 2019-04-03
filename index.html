@@ -45,12 +45,12 @@
         msgCount = 1;
         
         socket.on('connect', function(){
-          socket.emit('newConnection');
           if (getCookie('username') == ""){
             $('#user').val('Guest');
           } else {
             $('#user').val(getCookie('username'));
           }
+          socket.emit('newConnection');
         });
         
         socket.on('update', function(c){
