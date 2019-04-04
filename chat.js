@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 2000;
 var fs = require('fs');
-var ls = require('line-by-line');
+//var ls = require('line-by-line');
 var connections = 0;
 
 app.get('/', function(req, res){
@@ -15,7 +15,7 @@ io.on('connection', function(socket){
     connections += 1;
     io.sockets.emit('update', connections);
     
-    var count = 0;
+    /*var count = 0;
     lr = new ls('./logs/log.txt');
     lr.on('error', function (err) {
       // 'err' contains error object
@@ -26,7 +26,7 @@ io.on('connection', function(socket){
     });
     lr.on('end', function () {
       // All lines are read, file is closed now.
-    });
+    });*/
   });
   
   socket.on('disconnect', function(){
