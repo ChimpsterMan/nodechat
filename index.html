@@ -76,21 +76,13 @@
         
         socket.on('message', function(msg){
           msgCount += 1;
-          $('#messages ul').prepend($('<li id="' + msgCount + '">').text(msg));
-          bottom();
+          $('#messages ul').append($('<li id="' + msgCount + '">').text(msg));
+          document.getElementById('messages').scrollBy(0,100);
         });
         
         socket.on('reload', function(){
           location.reload(true);
         });
-        
-        function top() {
-          document.getElementById( '1' ).scrollIntoView();    
-        };
-
-        function bottom() {
-          window.scrollTo(0,document.getElementById('messages').scrollHeight);
-        };
         
         function createCookie(cookieName,cookieValue,daysToExpire)
         {

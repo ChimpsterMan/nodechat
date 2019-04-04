@@ -41,7 +41,7 @@ io.on('connection', function(socket){
   
   socket.on('chat message', function(msg){
     io.sockets.emit('message', msg);
-    writeLog(msg);
+    //writeLog(msg);
   });
 });
 
@@ -50,7 +50,6 @@ function writeLog(msg){
       if(err) {
           return console.log(err);
       }
-      console.log("Message was logged");
   }); 
 }
 
